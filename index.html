@@ -776,6 +776,25 @@
       transform: rotateY(180deg);
     }
 
+    .album-preview {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      aspect-ratio: 1;
+      margin: 12px 0;
+      overflow: hidden;
+      border: 1px solid rgba(0, 219, 255, 0.32);
+      border-radius: 16px;
+      background: rgba(0, 22, 51, 0.7);
+      box-shadow: 0 0 24px rgba(0, 219, 255, 0.18);
+    }
+
+    .album-preview img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
     .delivery-number {
       width: 52px;
       height: 52px;
@@ -1258,7 +1277,10 @@
               <div class="card-face card-back">
                 <div>
                   <h3>Capa do Meu Álbum</h3>
-                  <p>Não há nada por enquanto</p>
+                  <figure class="album-preview">
+                    <img src="capa.jpg" alt="Capa do álbum de CoffeeZ com paisagem noturna, chuva, lago e o texto Buscando sempre o melhor resultado.">
+                  </figure>
+                  <p>Capa do álbum CoffeeZ.</p>
                 </div>
                 <a class="pill-link github-link is-disabled" aria-disabled="true">Link da pasta [PREENCHER]</a>
                 <button class="flip-button" type="button">Voltar</button>
