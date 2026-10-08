@@ -299,7 +299,7 @@
       position: fixed;
       top: 0;
       left: 0;
-      z-index: 30;
+      z-index: 999;
       border-radius: 50%;
       pointer-events: none;
       transform: translate3d(-50%, -50%, 0);
@@ -831,6 +831,14 @@
       font-weight: 900;
     }
 
+    .status-thumb {
+      height: 38px;
+      width: 38px;
+      border-radius: 8px;
+      border: 1px solid rgba(0, 219, 255, 0.42);
+      object-fit: cover;
+    }
+
     .flip-button {
       min-height: 38px;
       padding: 8px 13px;
@@ -879,9 +887,9 @@
 
     .album-modal-panel {
       position: relative;
-      width: min(960px, 100%);
-      max-height: min(88vh, 960px);
-      display: grid;
+      max-width: 90vw;
+      display: flex;
+      flex-direction: column;
       gap: 14px;
       padding: clamp(14px, 3vw, 22px);
       border: 1px solid rgba(0, 219, 255, 0.42);
@@ -934,21 +942,32 @@
     }
 
     .album-full {
-      width: 100%;
-      max-height: 72vh;
       margin: 0;
-      display: grid;
-      place-items: center;
-      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden; /* Oculta a rolagem, JS fará o pan */
       border: 1px solid rgba(255, 255, 255, 0.14);
       border-radius: 16px;
       background: rgba(0, 22, 51, 0.72);
+      width: 100%;
+      cursor: grab;
+      touch-action: none;
+    }
+
+    .album-full:active {
+      cursor: grabbing;
     }
 
     .album-full img {
-      width: 100%;
+      display: block;
+      width: auto;
+      height: auto;
+      max-width: 100%;
       max-height: 72vh;
-      object-fit: contain;
+      transform-origin: 0 0;
+      pointer-events: none;
+      will-change: transform;
     }
 
     /* Manifesto com frase grande no centro e espaço para o texto longo. */
@@ -1345,7 +1364,7 @@
                 </div>
                 <h3>Capa do Meu Álbum</h3>
                 <div class="status-row">
-                  <span class="status">Em breve</span>
+                  <img src="capa_antiga.jpg" alt="Miniatura da capa" class="status-thumb">
                   <button class="flip-button" type="button">Ver detalhes</button>
                 </div>
               </div>
@@ -1498,7 +1517,7 @@
         <button class="modal-close" type="button" aria-label="Fechar capa">×</button>
       </div>
       <figure class="album-full">
-        <img src="capa.jpg" alt="Capa do álbum de CoffeeZ com paisagem noturna, chuva, lago e o texto Buscando sempre o melhor resultado.">
+        <img src="nova_capa.jpg" alt="Capa do álbum de CoffeeZ">
       </figure>
     </div>
   </div>
@@ -1574,17 +1593,108 @@
       albumCloseButton.focus();
     }
 
+    const albumContainer = document.querySelector(".album-full");
+    const albumImage = document.querySelector(".album-full img");
+    
+    let scale = 1;
+    let pointX = 0;
+    let pointY = 0;
+    let start = { x: 0, y: 0 };
+    let panning = false;
+
+    function setTransform() {
+      albumImage.style.transform = `translate(${pointX}px, ${pointY}px) scale(${scale})`;
+    }
+
+    function resetZoom() {
+      scale = 1;
+      pointX = 0;
+      pointY = 0;
+      setTransform();
+    }
+
     function closeAlbumModal() {
       albumModal.classList.remove("is-open");
       albumModal.setAttribute("aria-hidden", "true");
       document.body.style.overflow = "";
+      resetZoom();
     }
 
     albumCloseButton.addEventListener("click", closeAlbumModal);
 
     albumModal.addEventListener("click", (event) => {
+      // Se clicar no container escuro (album-modal) fecha.
       if (event.target === albumModal) closeAlbumModal();
     });
+
+    // Zoom com a rodinha do mouse (scroll)
+    albumContainer.addEventListener("wheel", (e) => {
+      e.preventDefault();
+      
+      const rect = albumImage.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+
+      const delta = (e.wheelDelta ? e.wheelDelta : -e.deltaY);
+      let zoomFactor = delta > 0 ? 1.15 : 1 / 1.15;
+      let newScale = scale * zoomFactor;
+
+      if (newScale > 15) {
+          zoomFactor = 15 / scale;
+          newScale = 15;
+      }
+      
+      if (newScale <= 1) {
+          resetZoom();
+      } else {
+          pointX -= x * (zoomFactor - 1);
+          pointY -= y * (zoomFactor - 1);
+          scale = newScale;
+          setTransform();
+      }
+    }, { passive: false });
+
+    // Pan (arrastar a imagem)
+    albumContainer.addEventListener("mousedown", (e) => {
+      if (scale <= 1) return;
+      e.preventDefault();
+      start = { x: e.clientX - pointX, y: e.clientY - pointY };
+      panning = true;
+    });
+
+    window.addEventListener("mouseup", () => {
+      panning = false;
+    });
+
+    window.addEventListener("mousemove", (e) => {
+      if (!panning) return;
+      e.preventDefault();
+      pointX = (e.clientX - start.x);
+      pointY = (e.clientY - start.y);
+      setTransform();
+    });
+
+    // Touch support para arrastar no celular
+    albumContainer.addEventListener("touchstart", (e) => {
+      if (scale <= 1 || e.touches.length !== 1) return;
+      start = { x: e.touches[0].clientX - pointX, y: e.touches[0].clientY - pointY };
+      panning = true;
+    });
+
+    window.addEventListener("touchend", () => {
+      panning = false;
+    });
+
+    window.addEventListener("touchmove", (e) => {
+      if (!panning || e.touches.length !== 1) return;
+      e.preventDefault();
+      pointX = (e.touches[0].clientX - start.x);
+      pointY = (e.touches[0].clientY - start.y);
+      setTransform();
+    }, { passive: false });
+
+    // Duplo clique para resetar
+    albumContainer.addEventListener("dblclick", resetZoom);
 
     window.addEventListener("keydown", (event) => {
       if (event.key === "Escape" && albumModal.classList.contains("is-open")) {
