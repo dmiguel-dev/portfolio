@@ -776,25 +776,6 @@
       transform: rotateY(180deg);
     }
 
-    .album-preview {
-      position: relative;
-      z-index: 1;
-      width: 100%;
-      aspect-ratio: 1;
-      margin: 12px 0;
-      overflow: hidden;
-      border: 1px solid rgba(0, 219, 255, 0.32);
-      border-radius: 16px;
-      background: rgba(0, 22, 51, 0.7);
-      box-shadow: 0 0 24px rgba(0, 219, 255, 0.18);
-    }
-
-    .album-preview img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
     .delivery-number {
       width: 52px;
       height: 52px;
@@ -874,6 +855,100 @@
       color: rgba(255, 255, 255, 0.88);
       box-shadow: none;
       pointer-events: none;
+    }
+
+    /* Janela maior para observar a capa do álbum sem cortar a imagem. */
+    .album-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 40;
+      display: grid;
+      place-items: center;
+      padding: 22px;
+      background: rgba(0, 22, 51, 0.82);
+      backdrop-filter: blur(16px);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity var(--tempo) ease;
+    }
+
+    .album-modal.is-open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .album-modal-panel {
+      position: relative;
+      width: min(960px, 100%);
+      max-height: min(88vh, 960px);
+      display: grid;
+      gap: 14px;
+      padding: clamp(14px, 3vw, 22px);
+      border: 1px solid rgba(0, 219, 255, 0.42);
+      border-radius: var(--raio);
+      background: rgba(0, 22, 51, 0.94);
+      box-shadow: 0 0 50px rgba(0, 219, 255, 0.22), 0 30px 90px var(--sombra);
+      transform: scale(0.96);
+      transition: transform var(--tempo) ease;
+    }
+
+    .album-modal.is-open .album-modal-panel {
+      transform: scale(1);
+    }
+
+    .album-modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    .album-modal-header h3 {
+      margin: 0;
+      font-family: var(--fonte-titulo);
+      font-size: clamp(1.45rem, 4vw, 2.3rem);
+      line-height: 1;
+    }
+
+    .modal-close {
+      width: 42px;
+      height: 42px;
+      border: 1px solid rgba(0, 219, 255, 0.45);
+      border-radius: 999px;
+      color: var(--texto);
+      background: rgba(255, 255, 255, 0.08);
+      font: inherit;
+      font-size: 1.45rem;
+      font-weight: 900;
+      line-height: 1;
+      cursor: none;
+      transition: background var(--tempo) ease, box-shadow var(--tempo) ease, transform var(--tempo) ease;
+    }
+
+    .modal-close:hover,
+    .modal-close:focus-visible {
+      background: rgba(0, 219, 255, 0.16);
+      box-shadow: 0 0 22px rgba(0, 219, 255, 0.36);
+      transform: scale(1.05);
+      outline: none;
+    }
+
+    .album-full {
+      width: 100%;
+      max-height: 72vh;
+      margin: 0;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 16px;
+      background: rgba(0, 22, 51, 0.72);
+    }
+
+    .album-full img {
+      width: 100%;
+      max-height: 72vh;
+      object-fit: contain;
     }
 
     /* Manifesto com frase grande no centro e espaço para o texto longo. */
@@ -1261,7 +1336,7 @@
         </div>
 
         <div class="deliveries-grid">
-          <article class="flip-card is-muted">
+          <article class="flip-card is-muted album-card" data-album-card>
             <div class="flip-inner">
               <div class="card-face card-front">
                 <div>
@@ -1277,10 +1352,7 @@
               <div class="card-face card-back">
                 <div>
                   <h3>Capa do Meu Álbum</h3>
-                  <figure class="album-preview">
-                    <img src="capa.jpg" alt="Capa do álbum de CoffeeZ com paisagem noturna, chuva, lago e o texto Buscando sempre o melhor resultado.">
-                  </figure>
-                  <p>Capa do álbum CoffeeZ.</p>
+                  <p>Clique de novo para observar a capa em tamanho maior.</p>
                 </div>
                 <a class="pill-link github-link is-disabled" aria-disabled="true">Link da pasta [PREENCHER]</a>
                 <button class="flip-button" type="button">Voltar</button>
@@ -1418,6 +1490,19 @@
     </footer>
   </div>
 
+  <!-- Aba maior para visualizar a capa do álbum sem corte. -->
+  <div class="album-modal" id="album-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="album-modal-title">
+    <div class="album-modal-panel">
+      <div class="album-modal-header">
+        <h3 id="album-modal-title">Capa do Meu Álbum</h3>
+        <button class="modal-close" type="button" aria-label="Fechar capa">×</button>
+      </div>
+      <figure class="album-full">
+        <img src="capa.jpg" alt="Capa do álbum de CoffeeZ com paisagem noturna, chuva, lago e o texto Buscando sempre o melhor resultado.">
+      </figure>
+    </div>
+  </div>
+
   <script>
     /* Seletores principais usados nas interações da página. */
     const root = document.documentElement;
@@ -1425,6 +1510,8 @@
     const cursorDot = document.querySelector(".cursor-dot");
     const cursorRing = document.querySelector(".cursor-ring");
     const sky = document.querySelector(".sky-scene");
+    const albumModal = document.querySelector("#album-modal");
+    const albumCloseButton = document.querySelector(".modal-close");
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     /* Cria estrelas em posições fixas para reforçar o céu noturno. */
@@ -1479,13 +1566,45 @@
       element.addEventListener("mouseleave", () => cursorRing.classList.remove("is-hovering"));
     });
 
-    /* Controla os vira-cards com clique no card inteiro e também pelo teclado. */
+    /* Abre e fecha a aba maior da capa do álbum. */
+    function openAlbumModal() {
+      albumModal.classList.add("is-open");
+      albumModal.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+      albumCloseButton.focus();
+    }
+
+    function closeAlbumModal() {
+      albumModal.classList.remove("is-open");
+      albumModal.setAttribute("aria-hidden", "true");
+      document.body.style.overflow = "";
+    }
+
+    albumCloseButton.addEventListener("click", closeAlbumModal);
+
+    albumModal.addEventListener("click", (event) => {
+      if (event.target === albumModal) closeAlbumModal();
+    });
+
+    window.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && albumModal.classList.contains("is-open")) {
+        closeAlbumModal();
+      }
+    });
+
+    /* Controla os cards: o álbum abre a aba maior; os outros viram normalmente. */
     document.querySelectorAll(".flip-card").forEach((card) => {
+      const isAlbumCard = card.hasAttribute("data-album-card");
       card.setAttribute("tabindex", "0");
       card.setAttribute("role", "button");
-      card.setAttribute("aria-label", "Virar card para ver detalhes");
+      card.setAttribute("aria-label", isAlbumCard ? "Abrir capa do álbum" : "Virar card para ver detalhes");
 
       function toggleCard() {
+        if (isAlbumCard) {
+          openAlbumModal();
+          return;
+        }
+
         card.classList.toggle("is-flipped");
       }
 
