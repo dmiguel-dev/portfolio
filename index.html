@@ -941,7 +941,42 @@
       outline: none;
     }
 
+    /* Estrutura do Carrossel das imagens do álbum */
+    .album-carousel {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      width: 100%;
+    }
+
+    .carousel-nav {
+      flex-shrink: 0;
+      width: 42px;
+      height: 42px;
+      border: 1px solid rgba(0, 219, 255, 0.45);
+      border-radius: 999px;
+      color: var(--texto);
+      background: rgba(255, 255, 255, 0.08);
+      font: inherit;
+      font-size: 1.2rem;
+      font-weight: 900;
+      line-height: 1;
+      cursor: none;
+      transition: background var(--tempo) ease, box-shadow var(--tempo) ease, transform var(--tempo) ease;
+      display: grid;
+      place-items: center;
+    }
+
+    .carousel-nav:hover,
+    .carousel-nav:focus-visible {
+      background: rgba(0, 219, 255, 0.16);
+      box-shadow: 0 0 22px rgba(0, 219, 255, 0.36);
+      transform: scale(1.05);
+      outline: none;
+    }
+
     .album-full {
+      flex-grow: 1;
       margin: 0;
       display: flex;
       justify-content: center;
@@ -1509,16 +1544,20 @@
     </footer>
   </div>
 
-  <!-- Aba maior para visualizar a capa do álbum sem corte. -->
+  <!-- Aba maior para visualizar as capas do álbum sem corte através de um carrossel. -->
   <div class="album-modal" id="album-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="album-modal-title">
     <div class="album-modal-panel">
       <div class="album-modal-header">
         <h3 id="album-modal-title">Capa do Meu Álbum</h3>
         <button class="modal-close" type="button" aria-label="Fechar capa">×</button>
       </div>
-      <figure class="album-full">
-        <img src="nova_capa.jpg" alt="Capa do álbum de CoffeeZ">
-      </figure>
+      <div class="album-carousel">
+        <button class="carousel-nav prev" type="button" aria-label="Imagem anterior">❮</button>
+        <figure class="album-full">
+          <img src="capa_antiga.jpg" alt="Capa do álbum de CoffeeZ">
+        </figure>
+        <button class="carousel-nav next" type="button" aria-label="Próxima imagem">❯</button>
+      </div>
     </div>
   </div>
 
@@ -1580,7 +1619,7 @@
     }, { passive: true });
 
     /* Aumenta o cursor quando ele passa por elementos clicáveis. */
-    document.querySelectorAll("a, button, .flip-card").forEach((element) => {
+    document.querySelectorAll("a, button, .flip-card, .carousel-nav").forEach((element) => {
       element.addEventListener("mouseenter", () => cursorRing.classList.add("is-hovering"));
       element.addEventListener("mouseleave", () => cursorRing.classList.remove("is-hovering"));
     });
@@ -1595,12 +1634,33 @@
 
     const albumContainer = document.querySelector(".album-full");
     const albumImage = document.querySelector(".album-full img");
+    const btnPrev = document.querySelector(".carousel-nav.prev");
+    const btnNext = document.querySelector(".carousel-nav.next");
     
     let scale = 1;
     let pointX = 0;
     let pointY = 0;
     let start = { x: 0, y: 0 };
     let panning = false;
+
+    // Configuração do carrossel 
+    const albumImages = ["capa_antiga.jpg", "nova_capa.jpg"];
+    let currentImageIndex = 0;
+
+    function updateAlbumImage() {
+      albumImage.src = albumImages[currentImageIndex];
+      resetZoom();
+    }
+
+    btnPrev.addEventListener("click", () => {
+      currentImageIndex = (currentImageIndex - 1 + albumImages.length) % albumImages.length;
+      updateAlbumImage();
+    });
+
+    btnNext.addEventListener("click", () => {
+      currentImageIndex = (currentImageIndex + 1) % albumImages.length;
+      updateAlbumImage();
+    });
 
     function setTransform() {
       albumImage.style.transform = `translate(${pointX}px, ${pointY}px) scale(${scale})`;
