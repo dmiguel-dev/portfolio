@@ -5,12 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Portfólio pessoal de Davi Miguel Malachias, CoffeeZ.">
   <title>Davi Miguel Malachias | CoffeeZ</title>
-
+ 
   <!-- Fontes escolhidas: Fraunces para títulos e Nunito para textos. -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
-
+ 
   <style>
     /* Variáveis principais da identidade visual escolhida. */
     :root {
@@ -27,18 +27,18 @@
       --raio: 22px;
       --tempo: 0.55s;
     }
-
+ 
     /* Reset simples para deixar tamanhos e espaçamentos previsíveis. */
     *,
     *::before,
     *::after {
       box-sizing: border-box;
     }
-
+ 
     html {
       scroll-behavior: smooth;
     }
-
+ 
     body {
       margin: 0;
       min-height: 100vh;
@@ -48,7 +48,7 @@
       font-family: var(--fonte-texto);
       cursor: none;
     }
-
+ 
     body::before,
     body::after {
       position: fixed;
@@ -62,31 +62,31 @@
       opacity: 0.34;
       pointer-events: none;
     }
-
+ 
     /* Manchas desfocadas de cor no fundo da página. */
     body::before {
       top: 8%;
       left: -10%;
       background: var(--primaria);
     }
-
+ 
     body::after {
       right: -12%;
       bottom: 15%;
       background: var(--secundaria);
     }
-
+ 
     a {
       color: inherit;
       text-decoration: none;
     }
-
+ 
     img,
     svg {
       max-width: 100%;
       display: block;
     }
-
+ 
     /* Cena atmosférica fixa: céu, lua, montanhas, névoa e silhuetas. */
     .sky-scene {
       position: fixed;
@@ -99,7 +99,7 @@
         radial-gradient(circle at 78% 15%, rgba(77, 0, 209, 0.28), transparent 18rem),
         linear-gradient(180deg, var(--fundo) 0%, var(--fundo) 58%, rgba(0, 22, 51, 0.92) 100%);
     }
-
+ 
     .star {
       position: absolute;
       width: 3px;
@@ -109,7 +109,7 @@
       box-shadow: 0 0 12px var(--destaque);
       animation: twinkle 3s ease-in-out infinite;
     }
-
+ 
     .comet {
       position: absolute;
       top: 12%;
@@ -122,7 +122,7 @@
       transform: rotate(-18deg);
       animation: comet 8s ease-in-out infinite;
     }
-
+ 
     .moon {
       position: absolute;
       top: 6%;
@@ -136,7 +136,7 @@
       transform: translateX(-50%);
       animation: moonPulse 5s ease-in-out infinite;
     }
-
+ 
     .moon::after {
       position: absolute;
       inset: 18% 20% auto auto;
@@ -147,7 +147,7 @@
       background: rgba(0, 22, 51, 0.22);
       box-shadow: -32px 32px 0 rgba(0, 22, 51, 0.14), 20px 46px 0 rgba(0, 22, 51, 0.12);
     }
-
+ 
     .hill,
     .hill::before,
     .hill::after {
@@ -156,18 +156,18 @@
       border-radius: 50% 50% 0 0;
       background: rgba(0, 22, 51, 0.78);
     }
-
+ 
     .hill {
       left: -10%;
       width: 64%;
       height: 28%;
     }
-
+ 
     .hill::before,
     .hill::after {
       content: "";
     }
-
+ 
     .hill::before {
       right: -48%;
       bottom: 4%;
@@ -175,7 +175,7 @@
       height: 82%;
       background: rgba(0, 22, 51, 0.88);
     }
-
+ 
     .hill::after {
       right: -100%;
       bottom: -5%;
@@ -183,7 +183,7 @@
       height: 110%;
       background: rgba(0, 22, 51, 0.92);
     }
-
+ 
     .fog {
       position: absolute;
       left: -15%;
@@ -195,7 +195,7 @@
       filter: blur(22px);
       animation: fogDrift 7s ease-in-out infinite alternate;
     }
-
+ 
     .tree {
       position: absolute;
       right: 7%;
@@ -205,7 +205,7 @@
       transform-origin: bottom center;
       animation: branchWind 4.5s ease-in-out infinite alternate;
     }
-
+ 
     .tree::before {
       position: absolute;
       right: 50px;
@@ -216,7 +216,7 @@
       border-radius: 999px 999px 0 0;
       background: rgba(0, 22, 51, 0.82);
     }
-
+ 
     .tree span {
       position: absolute;
       width: 110px;
@@ -225,25 +225,25 @@
       background: rgba(0, 22, 51, 0.78);
       transform-origin: right center;
     }
-
+ 
     .tree span:nth-child(1) {
       right: 50px;
       top: 58px;
       transform: rotate(-30deg);
     }
-
+ 
     .tree span:nth-child(2) {
       right: 40px;
       top: 104px;
       transform: rotate(24deg);
     }
-
+ 
     .tree span:nth-child(3) {
       right: 48px;
       top: 142px;
       transform: rotate(-20deg);
     }
-
+ 
     .lamp {
       position: absolute;
       left: 9%;
@@ -251,7 +251,7 @@
       width: 56px;
       height: 220px;
     }
-
+ 
     .lamp::before {
       position: absolute;
       left: 25px;
@@ -262,7 +262,7 @@
       border-radius: 999px;
       background: rgba(0, 22, 51, 0.88);
     }
-
+ 
     .lamp::after {
       position: absolute;
       left: 2px;
@@ -275,7 +275,7 @@
       box-shadow: 0 0 28px var(--destaque), 0 0 86px rgba(0, 219, 255, 0.62);
       animation: lampPulse 4.5s ease-in-out infinite;
     }
-
+ 
     /* Luz interativa do topo que acompanha mouse ou toque. */
     .cursor-light {
       position: fixed;
@@ -292,7 +292,7 @@
       transform: translate3d(-50%, -50%, 0);
       transition: opacity 0.3s ease;
     }
-
+ 
     /* Cursor personalizado com aro neon. */
     .cursor-dot,
     .cursor-ring {
@@ -304,27 +304,27 @@
       pointer-events: none;
       transform: translate3d(-50%, -50%, 0);
     }
-
+ 
     .cursor-dot {
       width: 8px;
       height: 8px;
       background: var(--destaque);
       box-shadow: 0 0 18px var(--destaque);
     }
-
+ 
     .cursor-ring {
       width: 34px;
       height: 34px;
       border: 1px solid rgba(0, 219, 255, 0.72);
       transition: width 0.3s ease, height 0.3s ease, border-color 0.3s ease;
     }
-
+ 
     .cursor-ring.is-hovering {
       width: 48px;
       height: 48px;
       border-color: var(--texto);
     }
-
+ 
     /* Menu lateral por bolinhas, destacando a seção atual. */
     .side-nav {
       position: fixed;
@@ -335,7 +335,7 @@
       gap: 14px;
       transform: translateY(-50%);
     }
-
+ 
     .side-nav a {
       width: 13px;
       height: 13px;
@@ -345,37 +345,37 @@
       box-shadow: 0 0 0 rgba(0, 219, 255, 0);
       transition: transform var(--tempo) ease, background var(--tempo) ease, box-shadow var(--tempo) ease;
     }
-
+ 
     .side-nav a.is-active {
       background: var(--destaque);
       box-shadow: 0 0 18px var(--destaque);
       transform: scale(1.35);
     }
-
+ 
     .page-shell {
       position: relative;
       z-index: 1;
     }
-
+ 
     .section {
       width: min(1120px, calc(100% - 34px));
       margin: 0 auto;
       padding: 96px 0;
     }
-
+ 
     .section.reveal {
       opacity: 0;
       filter: blur(14px);
       transform: translateY(30px);
       transition: opacity 0.7s ease, filter 0.7s ease, transform 0.7s ease;
     }
-
+ 
     .section.reveal.is-visible {
       opacity: 1;
       filter: blur(0);
       transform: translateY(0);
     }
-
+ 
     /* Topo centralizado: avatar, nome, frase e ações principais. */
     .hero {
       position: relative;
@@ -385,7 +385,7 @@
       padding: 78px 17px 44px;
       text-align: center;
     }
-
+ 
     .hero::before {
       position: absolute;
       inset: 0;
@@ -394,7 +394,7 @@
       background: radial-gradient(ellipse at center, rgba(0, 22, 51, 0.84) 0%, rgba(0, 22, 51, 0.58) 34%, rgba(0, 22, 51, 0) 72%);
       pointer-events: none;
     }
-
+ 
     .hero-inner {
       position: relative;
       z-index: 1;
@@ -403,7 +403,7 @@
       justify-items: center;
       gap: 24px;
     }
-
+ 
     .avatar-wrap {
       position: relative;
       width: clamp(156px, 28vw, 230px);
@@ -414,7 +414,7 @@
       background: rgba(255, 255, 255, 0.09);
       box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.18), 0 0 90px rgba(0, 219, 255, 0.3);
     }
-
+ 
     .avatar-wrap::before {
       position: absolute;
       inset: -12px;
@@ -423,7 +423,7 @@
       border: 1px solid rgba(0, 219, 255, 0.38);
       animation: ringPulse 4.8s ease-in-out infinite;
     }
-
+ 
     .avatar {
       width: 82%;
       aspect-ratio: 1;
@@ -431,7 +431,7 @@
       overflow: hidden;
       background: var(--fundo);
     }
-
+ 
     .hero h1 {
       max-width: 12ch;
       margin: 0;
@@ -442,7 +442,7 @@
       text-wrap: balance;
       text-shadow: 0 0 32px rgba(0, 219, 255, 0.22);
     }
-
+ 
     .artist-name {
       display: inline-flex;
       align-items: center;
@@ -455,7 +455,7 @@
       background: rgba(0, 219, 255, 0.08);
       font-weight: 800;
     }
-
+ 
     .tagline {
       max-width: 680px;
       margin: 0;
@@ -463,7 +463,7 @@
       font-size: clamp(1.15rem, 3vw, 1.65rem);
       font-weight: 700;
     }
-
+ 
     .quick-facts {
       display: flex;
       flex-wrap: wrap;
@@ -473,7 +473,7 @@
       padding: 0;
       list-style: none;
     }
-
+ 
     .quick-facts li {
       min-height: 38px;
       padding: 8px 15px;
@@ -483,14 +483,14 @@
       color: rgba(255, 255, 255, 0.92);
       font-weight: 700;
     }
-
+ 
     .hero-actions {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
       gap: 12px;
     }
-
+ 
     .pill-link {
       display: inline-flex;
       align-items: center;
@@ -505,7 +505,7 @@
       box-shadow: 0 0 0 rgba(0, 219, 255, 0);
       transition: transform var(--tempo) ease, box-shadow var(--tempo) ease, background var(--tempo) ease;
     }
-
+ 
     .pill-link:hover,
     .pill-link:focus-visible {
       background: rgba(0, 219, 255, 0.18);
@@ -513,7 +513,7 @@
       transform: translateY(-2px);
       outline: none;
     }
-
+ 
     .hollow-detail {
       display: grid;
       gap: 8px;
@@ -522,14 +522,14 @@
       color: var(--texto);
       font-weight: 700;
     }
-
+ 
     .tiny-knight {
       position: relative;
       width: 48px;
       height: 58px;
       filter: drop-shadow(0 0 16px rgba(0, 219, 255, 0.45));
     }
-
+ 
     .tiny-knight::before {
       position: absolute;
       left: 8px;
@@ -541,7 +541,7 @@
       background: var(--texto);
       box-shadow: inset 0 -5px 0 rgba(0, 22, 51, 0.25);
     }
-
+ 
     .tiny-knight::after {
       position: absolute;
       left: 14px;
@@ -552,7 +552,7 @@
       border-radius: 11px 11px 6px 6px;
       background: rgba(0, 22, 51, 0.92);
     }
-
+ 
     .horn {
       position: absolute;
       top: 0;
@@ -561,17 +561,17 @@
       border-radius: 999px 999px 0 0;
       background: var(--texto);
     }
-
+ 
     .horn.left {
       left: 8px;
       transform: rotate(-28deg);
     }
-
+ 
     .horn.right {
       right: 8px;
       transform: rotate(28deg);
     }
-
+ 
     .eye {
       position: absolute;
       top: 22px;
@@ -580,15 +580,15 @@
       border-radius: 50%;
       background: var(--fundo);
     }
-
+ 
     .eye.left {
       left: 18px;
     }
-
+ 
     .eye.right {
       right: 18px;
     }
-
+ 
     /* Ondas usadas como divisórias suaves entre seções. */
     .wave {
       width: 100%;
@@ -596,20 +596,20 @@
       margin: -24px 0;
       color: rgba(255, 255, 255, 0.06);
     }
-
+ 
     .section-title {
       display: grid;
       gap: 8px;
       margin-bottom: 30px;
     }
-
+ 
     .eyebrow {
       color: var(--destaque);
       font-weight: 900;
       letter-spacing: 0;
       text-transform: uppercase;
     }
-
+ 
     .section-title h2 {
       margin: 0;
       font-family: var(--fonte-titulo);
@@ -617,7 +617,7 @@
       line-height: 1;
       letter-spacing: 0;
     }
-
+ 
     .section-title p {
       max-width: 720px;
       margin: 0;
@@ -625,7 +625,7 @@
       font-size: 1.08rem;
       line-height: 1.7;
     }
-
+ 
     /* Área "Sobre mim" com texto e lista de interesses declarados. */
     .about-layout {
       display: grid;
@@ -633,7 +633,7 @@
       gap: 24px;
       align-items: stretch;
     }
-
+ 
     .about-copy,
     .identity-panel,
     .manifesto-box {
@@ -643,60 +643,60 @@
       box-shadow: 0 20px 60px var(--sombra);
       backdrop-filter: blur(16px);
     }
-
+ 
     .about-copy {
       padding: clamp(22px, 4vw, 38px);
     }
-
+ 
     .about-copy p {
       margin: 0;
       color: var(--texto);
       font-size: 1.08rem;
       line-height: 1.8;
     }
-
+ 
     .about-copy p + p {
       margin-top: 18px;
     }
-
+ 
     .identity-panel {
       display: grid;
       gap: 14px;
       padding: 24px;
     }
-
+ 
     .identity-item {
       display: grid;
       gap: 4px;
       padding-bottom: 14px;
       border-bottom: 1px solid rgba(255, 255, 255, 0.12);
     }
-
+ 
     .identity-item:last-child {
       padding-bottom: 0;
       border-bottom: 0;
     }
-
+ 
     .identity-item span {
       color: var(--destaque);
       font-size: 0.84rem;
       font-weight: 900;
       text-transform: uppercase;
     }
-
+ 
     .identity-item strong {
       color: var(--texto);
       font-size: 1.02rem;
       line-height: 1.35;
     }
-
+ 
     /* Grade dos vira-cards. */
     .deliveries-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 20px;
     }
-
+ 
     .flip-card {
       position: relative;
       min-height: 310px;
@@ -704,7 +704,7 @@
       border-radius: var(--raio);
       perspective: 1200px;
     }
-
+ 
     .flip-card::before {
       position: absolute;
       inset: -2px;
@@ -716,22 +716,22 @@
       animation: borderSpin 4s linear infinite;
       transition: opacity var(--tempo) ease;
     }
-
+ 
     .flip-card:hover::before,
     .flip-card:focus-within::before {
       opacity: 1;
     }
-
+ 
     .flip-card.is-muted {
       opacity: 1;
       filter: none;
     }
-
+ 
     .flip-card.is-muted .card-face {
       border-color: rgba(0, 219, 255, 0.28);
       background: rgba(255, 255, 255, 0.09);
     }
-
+ 
     .flip-inner {
       position: relative;
       width: 100%;
@@ -740,11 +740,11 @@
       transform-style: preserve-3d;
       transition: transform var(--tempo) ease;
     }
-
+ 
     .flip-card.is-flipped .flip-inner {
       transform: rotateY(180deg);
     }
-
+ 
     .card-face {
       position: absolute;
       inset: 0;
@@ -759,7 +759,7 @@
       backface-visibility: hidden;
       overflow: hidden;
     }
-
+ 
     .card-face::after {
       position: absolute;
       right: -40px;
@@ -771,11 +771,11 @@
       background: rgba(0, 219, 255, 0.13);
       filter: blur(10px);
     }
-
+ 
     .card-back {
       transform: rotateY(180deg);
     }
-
+ 
     .delivery-number {
       width: 52px;
       height: 52px;
@@ -788,7 +788,7 @@
       font-size: 1.35rem;
       font-weight: 700;
     }
-
+ 
     .card-face h3 {
       margin: 0;
       color: var(--texto);
@@ -797,18 +797,18 @@
       line-height: 1.05;
       letter-spacing: 0;
     }
-
+ 
     .card-meta,
     .card-face p {
       margin: 0;
       color: var(--texto);
       line-height: 1.55;
     }
-
+ 
     .card-meta {
       font-weight: 800;
     }
-
+ 
     .status-row {
       display: flex;
       flex-wrap: wrap;
@@ -816,7 +816,7 @@
       align-items: center;
       justify-content: space-between;
     }
-
+ 
     .status {
       display: inline-flex;
       min-height: 34px;
@@ -830,15 +830,15 @@
       font-size: 0.9rem;
       font-weight: 900;
     }
-
+ 
     .status-thumb {
-      height: 38px;
-      width: 38px;
-      border-radius: 8px;
+      height: 64px;
+      width: 64px;
+      border-radius: 10px;
       border: 1px solid rgba(0, 219, 255, 0.42);
       object-fit: cover;
     }
-
+ 
     .flip-button {
       min-height: 38px;
       padding: 8px 13px;
@@ -850,13 +850,13 @@
       font-weight: 800;
       cursor: none;
     }
-
+ 
     .github-link {
       width: max-content;
       max-width: 100%;
       margin-top: 8px;
     }
-
+ 
     .github-link.is-disabled {
       border-color: rgba(255, 255, 255, 0.18);
       background: rgba(255, 255, 255, 0.07);
@@ -864,7 +864,7 @@
       box-shadow: none;
       pointer-events: none;
     }
-
+ 
     /* Janela maior para observar a capa do álbum sem cortar a imagem. */
     .album-modal {
       position: fixed;
@@ -879,15 +879,16 @@
       pointer-events: none;
       transition: opacity var(--tempo) ease;
     }
-
+ 
     .album-modal.is-open {
       opacity: 1;
       pointer-events: auto;
     }
-
+ 
     .album-modal-panel {
       position: relative;
-      max-width: 90vw;
+      width: min(94vw, 900px);
+      max-width: 94vw;
       display: flex;
       flex-direction: column;
       gap: 14px;
@@ -899,25 +900,25 @@
       transform: scale(0.96);
       transition: transform var(--tempo) ease;
     }
-
+ 
     .album-modal.is-open .album-modal-panel {
       transform: scale(1);
     }
-
+ 
     .album-modal-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 14px;
     }
-
+ 
     .album-modal-header h3 {
       margin: 0;
       font-family: var(--fonte-titulo);
       font-size: clamp(1.45rem, 4vw, 2.3rem);
       line-height: 1;
     }
-
+ 
     .modal-close {
       width: 42px;
       height: 42px;
@@ -932,7 +933,7 @@
       cursor: none;
       transition: background var(--tempo) ease, box-shadow var(--tempo) ease, transform var(--tempo) ease;
     }
-
+ 
     .modal-close:hover,
     .modal-close:focus-visible {
       background: rgba(0, 219, 255, 0.16);
@@ -940,7 +941,7 @@
       transform: scale(1.05);
       outline: none;
     }
-
+ 
     /* Estrutura do Carrossel das imagens do álbum */
     .album-carousel {
       display: flex;
@@ -948,33 +949,8 @@
       gap: 14px;
       width: 100%;
     }
-
-    .carousel-nav {
-      flex-shrink: 0;
-      width: 42px;
-      height: 42px;
-      border: 1px solid rgba(0, 219, 255, 0.45);
-      border-radius: 999px;
-      color: var(--texto);
-      background: rgba(255, 255, 255, 0.08);
-      font: inherit;
-      font-size: 1.2rem;
-      font-weight: 900;
-      line-height: 1;
-      cursor: none;
-      transition: background var(--tempo) ease, box-shadow var(--tempo) ease, transform var(--tempo) ease;
-      display: grid;
-      place-items: center;
-    }
-
-    .carousel-nav:hover,
-    .carousel-nav:focus-visible {
-      background: rgba(0, 219, 255, 0.16);
-      box-shadow: 0 0 22px rgba(0, 219, 255, 0.36);
-      transform: scale(1.05);
-      outline: none;
-    }
-
+ 
+ 
     .album-full {
       flex-grow: 1;
       margin: 0;
@@ -989,29 +965,29 @@
       cursor: grab;
       touch-action: none;
     }
-
+ 
     .album-full:active {
       cursor: grabbing;
     }
-
+ 
     .album-full img {
       display: block;
       width: auto;
       height: auto;
       max-width: 100%;
-      max-height: 72vh;
+      max-height: 86vh;
       transform-origin: 0 0;
       pointer-events: none;
       will-change: transform;
     }
-
+ 
     /* Manifesto com frase grande no centro e espaço para o texto longo. */
     .manifesto-box {
       display: grid;
       gap: 28px;
       padding: clamp(24px, 5vw, 48px);
     }
-
+ 
     .manifesto-quote {
       margin: 0;
       color: var(--destaque);
@@ -1022,7 +998,7 @@
       text-wrap: balance;
       text-shadow: 0 0 30px rgba(0, 219, 255, 0.28);
     }
-
+ 
     .manifesto-text {
       min-height: 340px;
       padding: clamp(20px, 4vw, 34px);
@@ -1033,11 +1009,11 @@
       font-size: 1.05rem;
       line-height: 1.85;
     }
-
+ 
     .manifesto-text p {
       margin: 0;
     }
-
+ 
     /* Rodapé com contatos principais. */
     .footer {
       position: relative;
@@ -1046,41 +1022,41 @@
       text-align: center;
       background: rgba(0, 22, 51, 0.5);
     }
-
+ 
     .footer h2 {
       margin: 0 0 12px;
       font-family: var(--fonte-titulo);
       font-size: clamp(2rem, 5vw, 3.4rem);
       line-height: 1;
     }
-
+ 
     .footer p {
       max-width: 640px;
       margin: 0 auto 20px;
       color: rgba(255, 255, 255, 0.94);
       line-height: 1.7;
     }
-
+ 
     .footer-links {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
       gap: 12px;
     }
-
+ 
     /* Animações principais entre 0,3s e 0,8s para a interface; as ambientais são lentas. */
     @property --angle {
       syntax: "<angle>";
       initial-value: 0deg;
       inherits: false;
     }
-
+ 
     @keyframes borderSpin {
       to {
         --angle: 360deg;
       }
     }
-
+ 
     @keyframes twinkle {
       0%,
       100% {
@@ -1092,7 +1068,7 @@
         transform: scale(1.35);
       }
     }
-
+ 
     @keyframes comet {
       0%,
       64% {
@@ -1108,7 +1084,7 @@
         transform: translate3d(130vw, 34vh, 0) rotate(-18deg);
       }
     }
-
+ 
     @keyframes moonPulse {
       0%,
       100% {
@@ -1120,7 +1096,7 @@
         transform: translateX(-50%) scale(1.04);
       }
     }
-
+ 
     @keyframes lampPulse {
       0%,
       100% {
@@ -1132,7 +1108,7 @@
         transform: scale(1.04);
       }
     }
-
+ 
     @keyframes ringPulse {
       0%,
       100% {
@@ -1144,7 +1120,7 @@
         transform: scale(1.05);
       }
     }
-
+ 
     @keyframes fogDrift {
       from {
         transform: translateX(-3%);
@@ -1153,7 +1129,7 @@
         transform: translateX(5%);
       }
     }
-
+ 
     @keyframes branchWind {
       from {
         transform: rotate(-0.8deg);
@@ -1162,78 +1138,78 @@
         transform: rotate(1deg);
       }
     }
-
+ 
     /* Ajustes para tablets e celulares. */
     @media (max-width: 900px) {
       .about-layout {
         grid-template-columns: 1fr;
       }
-
+ 
       .deliveries-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
-
+ 
       .tree,
       .lamp {
         opacity: 0.48;
       }
-
+ 
       .moon {
         left: 13%;
         opacity: 0.38;
       }
     }
-
+ 
     @media (max-width: 640px) {
       body {
         cursor: auto;
       }
-
+ 
       .cursor-dot,
       .cursor-ring {
         display: none;
       }
-
+ 
       .side-nav {
         right: 10px;
         gap: 10px;
       }
-
+ 
       .side-nav a {
         width: 10px;
         height: 10px;
       }
-
+ 
       .section {
         width: min(100% - 28px, 1120px);
         padding: 72px 0;
       }
-
+ 
       .hero {
         padding-inline: 14px;
       }
-
+ 
       .quick-facts li {
         max-width: 100%;
         font-size: 0.92rem;
       }
-
+ 
       .deliveries-grid {
         grid-template-columns: 1fr;
       }
-
+ 
       .flip-card {
         min-height: 326px;
       }
-
+ 
       .card-face {
         padding: 20px;
       }
-
+ 
       .manifesto-text {
         min-height: 420px;
       }
-
+ 
       .moon {
         top: 4%;
         left: 18%;
@@ -1241,7 +1217,7 @@
         opacity: 0.3;
       }
     }
-
+ 
     /* Reduz animações para quem prefere menos movimento. */
     @media (prefers-reduced-motion: reduce) {
       *,
@@ -1255,7 +1231,7 @@
     }
   </style>
 </head>
-
+ 
 <body>
   <!-- Fundo ilustrado e atmosférico, feito apenas com HTML/CSS/JS puro. -->
   <div class="sky-scene" aria-hidden="true">
@@ -1270,12 +1246,12 @@
       <span></span>
     </div>
   </div>
-
+ 
   <!-- Elementos visuais que acompanham mouse/toque. -->
   <div class="cursor-light" aria-hidden="true"></div>
   <div class="cursor-dot" aria-hidden="true"></div>
   <div class="cursor-ring" aria-hidden="true"></div>
-
+ 
   <!-- Menu lateral por bolinhas para indicar a seção atual. -->
   <nav class="side-nav" aria-label="Navegação por seções">
     <a href="#topo" aria-label="Ir para o topo"></a>
@@ -1284,7 +1260,7 @@
     <a href="#manifesto" aria-label="Ir para Manifesto"></a>
     <a href="#contato" aria-label="Ir para Contato"></a>
   </nav>
-
+ 
   <div class="page-shell">
     <!-- Topo da página com avatar circular, nome e frase principal. -->
     <header class="hero section" id="topo">
@@ -1307,11 +1283,11 @@
             </svg>
           </div>
         </figure>
-
+ 
         <span class="artist-name">CoffeeZ</span>
         <h1>Davi Miguel Malachias</h1>
         <p class="tagline">Pensar de forma única</p>
-
+ 
         <ul class="quick-facts" aria-label="Informações rápidas">
           <li>16 anos, Varginha</li>
           <li>Informática para internet</li>
@@ -1319,12 +1295,12 @@
           <li>Música</li>
           <li>Arte/design</li>
         </ul>
-
+ 
         <div class="hero-actions" aria-label="Links principais">
           <a class="pill-link" href="https://github.com/dmiguel-dev" target="_blank" rel="noreferrer">GitHub</a>
           <a class="pill-link" href="https://www.instagram.com/davx_z0" target="_blank" rel="noreferrer">Instagram</a>
         </div>
-
+ 
         <div class="hollow-detail" aria-label="Detalhe inspirado em Hollow Knight">
           <div class="tiny-knight" aria-hidden="true">
             <span class="horn left"></span>
@@ -1336,11 +1312,11 @@
         </div>
       </div>
     </header>
-
+ 
     <svg class="wave" viewBox="0 0 1440 110" preserveAspectRatio="none" aria-hidden="true">
       <path d="M0,72 C220,120 350,16 560,62 C760,106 960,92 1120,45 C1260,4 1348,18 1440,42 L1440,110 L0,110 Z" fill="currentColor"></path>
     </svg>
-
+ 
     <main>
       <!-- Seção de apresentação pessoal com os dados fornecidos. -->
       <section class="section reveal" id="sobre" aria-labelledby="titulo-sobre">
@@ -1349,13 +1325,13 @@
           <h2 id="titulo-sobre">Quem é o CoffeeZ?</h2>
           <p>Um resumo direto, com as peças que mais aparecem no meu jeito de criar.</p>
         </div>
-
+ 
         <div class="about-layout">
           <div class="about-copy">
             <p>Sou Davi Miguel Malachias, também conhecido como CoffeeZ, tenho 16 anos e moro em Varginha. Curso Informática para internet e gosto de juntar jogos digitais, música e arte/design em ideias que tenham uma cara própria.</p>
             <p>No futuro, quero criar artes e designs para jogos, explorando atmosferas, personagens e detalhes visuais que deixem cada projeto com identidade. E um interesse que pouca gente sabe: eu desenho.</p>
           </div>
-
+ 
           <aside class="identity-panel" aria-label="Detalhes pessoais">
             <div class="identity-item">
               <span>Curso</span>
@@ -1376,11 +1352,11 @@
           </aside>
         </div>
       </section>
-
+ 
       <svg class="wave" viewBox="0 0 1440 110" preserveAspectRatio="none" aria-hidden="true">
         <path d="M0,44 C160,92 340,104 520,54 C740,-8 876,24 1030,68 C1200,116 1322,94 1440,50 L1440,110 L0,110 Z" fill="currentColor"></path>
       </svg>
-
+ 
       <!-- Cards das entregas. Cada um vira para mostrar os detalhes. -->
       <section class="section reveal" id="entregas" aria-labelledby="titulo-entregas">
         <div class="section-title">
@@ -1388,7 +1364,7 @@
           <h2 id="titulo-entregas">Trabalhos que contam caminho</h2>
           <p>Cada card guarda uma entrega, o que ela puxa de aprendizado e o espaço do link da pasta no GitHub.</p>
         </div>
-
+ 
         <div class="deliveries-grid">
           <article class="flip-card is-muted album-card" data-album-card>
             <div class="flip-inner">
@@ -1399,7 +1375,7 @@
                 </div>
                 <h3>Capa do Meu Álbum</h3>
                 <div class="status-row">
-                  <img src="capa_antiga.jpg" alt="Miniatura da capa" class="status-thumb">
+                  <img src="nova_capa.jpg" alt="Miniatura da capa" class="status-thumb">
                   <button class="flip-button" type="button">Ver detalhes</button>
                 </div>
               </div>
@@ -1413,7 +1389,7 @@
               </div>
             </div>
           </article>
-
+ 
           <article class="flip-card is-muted">
             <div class="flip-inner">
               <div class="card-face card-front">
@@ -1437,7 +1413,7 @@
               </div>
             </div>
           </article>
-
+ 
           <article class="flip-card is-muted">
             <div class="flip-inner">
               <div class="card-face card-front">
@@ -1461,7 +1437,7 @@
               </div>
             </div>
           </article>
-
+ 
           <article class="flip-card is-muted">
             <div class="flip-inner">
               <div class="card-face card-front">
@@ -1485,7 +1461,7 @@
               </div>
             </div>
           </article>
-
+ 
           <article class="flip-card is-muted">
             <div class="flip-inner">
               <div class="card-face card-front">
@@ -1511,11 +1487,11 @@
           </article>
         </div>
       </section>
-
+ 
       <svg class="wave" viewBox="0 0 1440 110" preserveAspectRatio="none" aria-hidden="true">
         <path d="M0,60 C142,18 292,24 450,70 C650,128 790,88 930,50 C1110,2 1280,16 1440,74 L1440,110 L0,110 Z" fill="currentColor"></path>
       </svg>
-
+ 
       <!-- Espaço do manifesto com destaque visual no meio. -->
       <section class="section reveal" id="manifesto" aria-labelledby="titulo-manifesto">
         <div class="section-title">
@@ -1523,7 +1499,7 @@
           <h2 id="titulo-manifesto">Meu jeito de criar</h2>
           <p>Um lugar para colocar um texto maior, sem perder o clima da página.</p>
         </div>
-
+ 
         <div class="manifesto-box">
           <blockquote class="manifesto-quote">Pensar de forma única</blockquote>
           <div class="manifesto-text">
@@ -1532,7 +1508,7 @@
         </div>
       </section>
     </main>
-
+ 
     <!-- Rodapé com contato e GitHub. -->
     <footer class="footer" id="contato">
       <h2>Bora conversar?</h2>
@@ -1543,7 +1519,7 @@
       </div>
     </footer>
   </div>
-
+ 
   <!-- Aba maior para visualizar as capas do álbum sem corte através de um carrossel. -->
   <div class="album-modal" id="album-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="album-modal-title">
     <div class="album-modal-panel">
@@ -1552,15 +1528,13 @@
         <button class="modal-close" type="button" aria-label="Fechar capa">×</button>
       </div>
       <div class="album-carousel">
-        <button class="carousel-nav prev" type="button" aria-label="Imagem anterior">❮</button>
         <figure class="album-full">
-          <img src="capa_antiga.jpg" alt="Capa do álbum de CoffeeZ">
+          <img src="nova_capa.jpg" alt="Capa do álbum de CoffeeZ">
         </figure>
-        <button class="carousel-nav next" type="button" aria-label="Próxima imagem">❯</button>
       </div>
     </div>
   </div>
-
+ 
   <script>
     /* Seletores principais usados nas interações da página. */
     const root = document.documentElement;
@@ -1571,14 +1545,14 @@
     const albumModal = document.querySelector("#album-modal");
     const albumCloseButton = document.querySelector(".modal-close");
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
+ 
     /* Cria estrelas em posições fixas para reforçar o céu noturno. */
     const starPositions = [
       [7, 18, 0], [14, 10, 1.1], [22, 28, 0.4], [31, 14, 1.8], [42, 26, 0.9],
       [54, 11, 1.4], [62, 30, 0.2], [73, 20, 1.7], [84, 12, 0.7], [91, 34, 1.2],
       [18, 44, 1.5], [36, 39, 0.6], [68, 43, 1.9], [80, 52, 0.3], [95, 47, 1.0]
     ];
-
+ 
     starPositions.forEach(([left, top, delay]) => {
       const star = document.createElement("span");
       star.className = "star";
@@ -1587,16 +1561,16 @@
       star.style.animationDelay = `${delay}s`;
       sky.appendChild(star);
     });
-
+ 
     /* Atualiza luz, cursor personalizado e parallax de acordo com mouse ou toque. */
     function moveAtmosphere(clientX, clientY) {
       const x = Number.isFinite(clientX) ? clientX : window.innerWidth / 2;
       const y = Number.isFinite(clientY) ? clientY : window.innerHeight / 2;
-
+ 
       cursorLight.style.transform = `translate3d(${x - cursorLight.offsetWidth / 2}px, ${y - cursorLight.offsetHeight / 2}px, 0)`;
       cursorDot.style.transform = `translate3d(${x}px, ${y}px, 0) translate(-50%, -50%)`;
       cursorRing.style.transform = `translate3d(${x}px, ${y}px, 0) translate(-50%, -50%)`;
-
+ 
       if (!reducedMotion) {
         const tiltX = (x / window.innerWidth - 0.5) * 18;
         const tiltY = (y / window.innerHeight - 0.5) * 18;
@@ -1606,24 +1580,24 @@
         });
       }
     }
-
+ 
     moveAtmosphere(window.innerWidth / 2, window.innerHeight / 2);
-
+ 
     window.addEventListener("pointermove", (event) => {
       moveAtmosphere(event.clientX, event.clientY);
     });
-
+ 
     window.addEventListener("touchmove", (event) => {
       const touch = event.touches[0];
       if (touch) moveAtmosphere(touch.clientX, touch.clientY);
     }, { passive: true });
-
+ 
     /* Aumenta o cursor quando ele passa por elementos clicáveis. */
-    document.querySelectorAll("a, button, .flip-card, .carousel-nav").forEach((element) => {
+    document.querySelectorAll("a, button, .flip-card").forEach((element) => {
       element.addEventListener("mouseenter", () => cursorRing.classList.add("is-hovering"));
       element.addEventListener("mouseleave", () => cursorRing.classList.remove("is-hovering"));
     });
-
+ 
     /* Abre e fecha a aba maior da capa do álbum. */
     function openAlbumModal() {
       albumModal.classList.add("is-open");
@@ -1631,62 +1605,41 @@
       document.body.style.overflow = "hidden";
       albumCloseButton.focus();
     }
-
+ 
     const albumContainer = document.querySelector(".album-full");
     const albumImage = document.querySelector(".album-full img");
-    const btnPrev = document.querySelector(".carousel-nav.prev");
-    const btnNext = document.querySelector(".carousel-nav.next");
-    
+            
     let scale = 1;
     let pointX = 0;
     let pointY = 0;
     let start = { x: 0, y: 0 };
     let panning = false;
-
-    // Configuração do carrossel 
-    const albumImages = ["capa_antiga.jpg", "nova_capa.jpg"];
-    let currentImageIndex = 0;
-
-    function updateAlbumImage() {
-      albumImage.src = albumImages[currentImageIndex];
-      resetZoom();
-    }
-
-    btnPrev.addEventListener("click", () => {
-      currentImageIndex = (currentImageIndex - 1 + albumImages.length) % albumImages.length;
-      updateAlbumImage();
-    });
-
-    btnNext.addEventListener("click", () => {
-      currentImageIndex = (currentImageIndex + 1) % albumImages.length;
-      updateAlbumImage();
-    });
-
+ 
     function setTransform() {
       albumImage.style.transform = `translate(${pointX}px, ${pointY}px) scale(${scale})`;
     }
-
+ 
     function resetZoom() {
       scale = 1;
       pointX = 0;
       pointY = 0;
       setTransform();
     }
-
+ 
     function closeAlbumModal() {
       albumModal.classList.remove("is-open");
       albumModal.setAttribute("aria-hidden", "true");
       document.body.style.overflow = "";
       resetZoom();
     }
-
+ 
     albumCloseButton.addEventListener("click", closeAlbumModal);
-
+ 
     albumModal.addEventListener("click", (event) => {
       // Se clicar no container escuro (album-modal) fecha.
       if (event.target === albumModal) closeAlbumModal();
     });
-
+ 
     // Zoom com a rodinha do mouse (scroll)
     albumContainer.addEventListener("wheel", (e) => {
       e.preventDefault();
@@ -1694,11 +1647,11 @@
       const rect = albumImage.getBoundingClientRect();
       const x = e.clientX - rect.left;
       const y = e.clientY - rect.top;
-
+ 
       const delta = (e.wheelDelta ? e.wheelDelta : -e.deltaY);
       let zoomFactor = delta > 0 ? 1.15 : 1 / 1.15;
       let newScale = scale * zoomFactor;
-
+ 
       if (newScale > 15) {
           zoomFactor = 15 / scale;
           newScale = 15;
@@ -1713,7 +1666,7 @@
           setTransform();
       }
     }, { passive: false });
-
+ 
     // Pan (arrastar a imagem)
     albumContainer.addEventListener("mousedown", (e) => {
       if (scale <= 1) return;
@@ -1721,11 +1674,11 @@
       start = { x: e.clientX - pointX, y: e.clientY - pointY };
       panning = true;
     });
-
+ 
     window.addEventListener("mouseup", () => {
       panning = false;
     });
-
+ 
     window.addEventListener("mousemove", (e) => {
       if (!panning) return;
       e.preventDefault();
@@ -1733,18 +1686,18 @@
       pointY = (e.clientY - start.y);
       setTransform();
     });
-
+ 
     // Touch support para arrastar no celular
     albumContainer.addEventListener("touchstart", (e) => {
       if (scale <= 1 || e.touches.length !== 1) return;
       start = { x: e.touches[0].clientX - pointX, y: e.touches[0].clientY - pointY };
       panning = true;
     });
-
+ 
     window.addEventListener("touchend", () => {
       panning = false;
     });
-
+ 
     window.addEventListener("touchmove", (e) => {
       if (!panning || e.touches.length !== 1) return;
       e.preventDefault();
@@ -1752,37 +1705,37 @@
       pointY = (e.touches[0].clientY - start.y);
       setTransform();
     }, { passive: false });
-
+ 
     // Duplo clique para resetar
     albumContainer.addEventListener("dblclick", resetZoom);
-
+ 
     window.addEventListener("keydown", (event) => {
       if (event.key === "Escape" && albumModal.classList.contains("is-open")) {
         closeAlbumModal();
       }
     });
-
+ 
     /* Controla os cards: o álbum abre a aba maior; os outros viram normalmente. */
     document.querySelectorAll(".flip-card").forEach((card) => {
       const isAlbumCard = card.hasAttribute("data-album-card");
       card.setAttribute("tabindex", "0");
       card.setAttribute("role", "button");
       card.setAttribute("aria-label", isAlbumCard ? "Abrir capa do álbum" : "Virar card para ver detalhes");
-
+ 
       function toggleCard() {
         if (isAlbumCard) {
           openAlbumModal();
           return;
         }
-
+ 
         card.classList.toggle("is-flipped");
       }
-
+ 
       card.addEventListener("click", (event) => {
         if (event.target.closest("a")) return;
         toggleCard();
       });
-
+ 
       card.addEventListener("keydown", (event) => {
         if (event.key === "Enter" || event.key === " ") {
           event.preventDefault();
@@ -1790,7 +1743,7 @@
         }
       });
     });
-
+ 
     /* Mostra as seções com blur reduzindo quando entram na tela. */
     const revealObserver = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
@@ -1799,15 +1752,15 @@
         }
       });
     }, { threshold: 0.18 });
-
+ 
     document.querySelectorAll(".reveal").forEach((section) => {
       revealObserver.observe(section);
     });
-
+ 
     /* Atualiza a bolinha ativa da navegação lateral conforme a seção visível. */
     const navLinks = Array.from(document.querySelectorAll(".side-nav a"));
     const sectionMap = navLinks.map((link) => document.querySelector(link.getAttribute("href")));
-
+ 
     const navObserver = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
@@ -1817,11 +1770,11 @@
         }
       });
     }, { rootMargin: "-42% 0px -42% 0px", threshold: 0.01 });
-
+ 
     sectionMap.forEach((section) => {
       if (section) navObserver.observe(section);
     });
-
+ 
     /* Pequeno parallax vertical durante a rolagem para dar profundidade. */
     window.addEventListener("scroll", () => {
       if (reducedMotion) return;
